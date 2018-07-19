@@ -9,11 +9,10 @@ var j = word.length;
 
 //Way to track number of wins the user has and number of guesses they have left
 var wins = 0;
-var guessLeft = 12;
 
 //Variable to deal with wrong letter guesses
 var wrongChars = [];
-var guessLeft = 10;
+var guessLeft = 12;
 
 //Make an array that is the same length as the word and full of *
 var arrStars = [];
@@ -35,26 +34,35 @@ document.onkeyup = function(event) {
         arrStars.splice(place, 1, userGuess);
     }
 
-//Check to see if there are any letters left to guess
+    //Check to see if there are any letters left to guess
+    var starLeft = arrStars.indexOf("*");
+    
+    if(starLeft == -1) {
+        //add 1 to wins and pick a new word
+        wins++;
+    }
+    // else {
+        //add 1 to wins and pick a new word
+        // wins++;
+    // }
+
+    //Logs variables to the console
+    console.log(arrLength);
+    console.log(wordList);
+    console.log(word);
+    console.log(i);
+    console.log(j);
+    console.log(arrStars);
+    console.log(wrongChars);
+
+    //Variable to hold HTML that has live game information for the user to view
+    var gamehtml = 
+        " Wins: " + wins + " <hr> " + arrStars + " <hr>" + "Guesses remaining: " + guessLeft + "<hr> Letters incorrectly guessed: <hr>" + wrongChars + "<hr>";
+        // "p" + arrStars + ""
+        // "p Guesses remaining: " + guessLeft + ""
+        // "pLetters incorrectly guessed: "
+        // "p" + wrongChars + "";
 
 
-//Logs variables to the console
-console.log(arrLength);
-console.log(wordList);
-console.log(word);
-console.log(i);
-console.log(j);
-console.log(arrStars);
-console.log(wrongChars);
-
-//Variable to hold HTML that has live game information for the user to view
-var html =
-    "<p>Wins: " + wins + "</p>"
-    "<p>" + arrStars + "</p>"
-    "<p> Guesses remaining: " + guessLeft + "</p>"
-    "<p>Letters incorrectly guessed: </p>"
-    "<p>" + wrongChars + "</p>";
-
-
-    document.querySelector("#game").innerHTML = html;
+    document.getElementById("game").innerHTML = gamehtml
 }
