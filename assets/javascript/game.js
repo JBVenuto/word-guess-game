@@ -16,7 +16,6 @@ var guessLeft = 12;
 
 //Make an array that is the same length as the word and full of *
 var arrStars = [];
-
 for(k = 0; k < j; k++) {
     arrStars.push("*");
 }
@@ -28,6 +27,7 @@ document.onkeyup = function(event) {
     //Put the letter into a list of wrongly guessed letters
     if(place === -1) {
         wrongChars.push(userGuess);
+        guessLeft--;
     }
     //Put the letter into the word if it was a correct guess
     else {
@@ -40,11 +40,8 @@ document.onkeyup = function(event) {
     if(starLeft == -1) {
         //add 1 to wins and pick a new word
         wins++;
+        guessLeft = 12
     }
-    // else {
-        //add 1 to wins and pick a new word
-        // wins++;
-    // }
 
     //Logs variables to the console
     console.log(arrLength);
@@ -58,11 +55,6 @@ document.onkeyup = function(event) {
     //Variable to hold HTML that has live game information for the user to view
     var gamehtml = 
         " Wins: " + wins + " <hr> " + arrStars + " <hr>" + "Guesses remaining: " + guessLeft + "<hr> Letters incorrectly guessed: <hr>" + wrongChars + "<hr>";
-        // "p" + arrStars + ""
-        // "p Guesses remaining: " + guessLeft + ""
-        // "pLetters incorrectly guessed: "
-        // "p" + wrongChars + "";
-
 
     document.getElementById("game").innerHTML = gamehtml
 }
