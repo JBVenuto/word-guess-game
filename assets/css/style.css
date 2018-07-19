@@ -1,0 +1,17 @@
+body {
+    background-image: url("../images/space_background.jpg");
+    background-color: darkblue;
+}
+h1 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.container {
+    background-color: lightgray;
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 900px;
+    text-align: center;
+}
