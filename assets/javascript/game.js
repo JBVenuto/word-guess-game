@@ -1,11 +1,12 @@
-//Array with words to fit the scifi theme
-var wordList = ["star", "space", "alien", "galaxy", "planet","nebula"]
+// Array with words to fit the scifi theme
+var wordList = ["star", "space", "alien", "orbit", "planet","nebula"]
 var arrLength = wordList.length;
 
-//Select a word from the available words
+// Select a word from the available words
 var i = Math.floor(Math.random() * arrLength);
 var word = wordList[i];
 var j = word.length;
+
 
 //Way to track number of wins the user has and number of guesses they have left
 var wins = 0;
@@ -20,9 +21,11 @@ for(k = 0; k < j; k++) {
     arrStars.push("*");
 }
 
+
 //Get the user's letter guess
 document.onkeyup = function(event) {
-    var userGuess = event.key;
+
+    var userGuess = event.key.toLowerCase();
     var place = word.indexOf(userGuess);
     //Put the letter into a list of wrongly guessed letters
     if(place === -1) {
@@ -38,9 +41,18 @@ document.onkeyup = function(event) {
     var starLeft = arrStars.indexOf("*");
     
     if(starLeft == -1) {
-        //add 1 to wins and pick a new word
+        //add 1 to wins, pick a new word
         wins++;
-        guessLeft = 12
+        guessLeft = 12;
+        arrStars = [];
+        wrongChars = [];
+      
+    }
+
+    //Check if the user still has guessing remaining
+    if(guessLeft === 0) {
+        alert("Try a new word");
+        guessLeft = 12;
     }
 
     //Logs variables to the console
@@ -54,7 +66,7 @@ document.onkeyup = function(event) {
 
     //Variable to hold HTML that has live game information for the user to view
     var gamehtml = 
-        " Wins: " + wins + " <hr> " + arrStars + " <hr>" + "Guesses remaining: " + guessLeft + "<hr> Letters incorrectly guessed: <hr>" + wrongChars + "<hr>";
+        " Wins: " + wins + " <hr> " + arrStars.join(" ") + " <hr>" + "Guesses remaining: " + guessLeft + "<hr> Letters incorrectly guessed: <hr>" + wrongChars + "<hr>";
 
-    document.getElementById("game").innerHTML = gamehtml
+    document.getElementById("game").innerHTML = gamehtml  
 }
